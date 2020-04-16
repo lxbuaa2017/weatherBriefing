@@ -19,6 +19,8 @@ import scrapy
 class WeatherbriefingspiderItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
+    brief_title = scrapy.Field()
+    brief_detail = scrapy.Field()
     key_point_title = scrapy.Field()
     key_point_detail = scrapy.Field()
     day1_detail = scrapy.Field()
@@ -29,4 +31,5 @@ class WeatherbriefingspiderItem(scrapy.Item):
     # day3_img_src = scrapy.Field()
     img_urls = scrapy.Field()
     images = scrapy.Field()
+    influence_and_concern = scrapy.Field()
     pass
