@@ -31,7 +31,7 @@ class BriefingSpider(scrapy.Spider):
         # 删去最后一句“制作： 徐成鹏 孟庆涛                   签发： 方翀”
         strs.remove(strs[-1])
         # 第一部分
-        WeatherbriefingspiderItem["brief_title"] = strs[0]
+        brief_title = strs[0]
         strs.remove(strs[0])
         brief_detail = ""
         index = 0
@@ -41,7 +41,7 @@ class BriefingSpider(scrapy.Spider):
             else:
                 index = i
                 break
-        strs.remove(strs[0:index + 1])
+        strs = strs[index+1:]
         # 第二部分
         key_point_title = []
         key_point_detail = []
@@ -56,8 +56,9 @@ class BriefingSpider(scrapy.Spider):
             else:
                 detail += strs[index]
             index += 1
-        strs.remove(strs[0:index + 1])
-        #第三部分 (day1)
+        key_point_detail.append(detail)
+        strs = strs[index+1:]
+        #第三部分
         index = 0
         date_rz = r'[0-9]{1,2}月[0-9]{1,2}日'
         day1_detail = strs[index]
@@ -77,7 +78,28 @@ class BriefingSpider(scrapy.Spider):
         while not strs[index][1]=='、':
             day3_detail+=strs[index]
             index+=1
-        with open("test.txt", "w") as f:
-            for str in strs:
-                f.write(str + '\n')
-        pass
+        # 第四部分
+        strs = strs[index+1:]
+        influence_and_concern = strs
+        #爬取三张图片
+        urls = sel.xpath("/html/body/div[@class='container']/div[@class='row']/div[@class='col-xs-10']/div[@class='bgwhite'][2]/div[@id='text']/div[@class='writing']/div/img/@src").extract()
+        # 取最后三张图
+        img_urls = urls[-4:-1]
+
+        # 生成item
+        item = WeatherbriefingspiderItem()
+        item['brief_title'] = brief_title[2:]
+        item['brief_detail'] = brief_detail
+        item['key_point_title'] = key_point_title
+        item['key_point_detail'] = key_point_detail
+        item['day1_detail'] = day1_detail
+        item['day2_detail'] = day2_detail
+        item['day3_detail'] = day3_detail
+        item['img_urls'] = img_urls
+        item['influence_and_concern'] = influence_and_concern
+
+        # with open("test.txt", "w") as f:
+        #     for str in strs:
+        #         f.write(str + '\n')
+        # pass
+        yield item

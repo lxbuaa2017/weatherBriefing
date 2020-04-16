@@ -22,7 +22,7 @@ class WeatherImgPipeline(ImagesPipeline):
         # 打印图片路径
         # print(request.url)
         # 通过分割图片路径获取图片名字
-        img_name = request.meta['seq']
+        img_name = str(request.meta['seq'])
         return img_name
 
     # 返回item对象，给下一执行的管道类

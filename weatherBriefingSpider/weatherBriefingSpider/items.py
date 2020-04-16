@@ -29,7 +29,8 @@ class WeatherbriefingspiderItem(scrapy.Item):
     # day2_img_src = scrapy.Field()
     day3_detail = scrapy.Field()
     # day3_img_src = scrapy.Field()
+    influence_and_concern = scrapy.Field()
     img_urls = scrapy.Field()
     images = scrapy.Field()
-    influence_and_concern = scrapy.Field()
+
     pass

@@ -76,7 +76,7 @@ project_dir = os.path.abspath(os.path.dirname(__file__))
 IMAGES_STORE = os.path.join(project_dir, 'img')
 IMAGES_URLS_FIELD = 'img_urls'
 IMAGES_RESULT_FIELD = 'images'
-DOWNLOAD_DELAY = 2
+DOWNLOAD_DELAY = 0
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
