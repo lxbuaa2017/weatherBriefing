@@ -7,6 +7,7 @@
 
 import scrapy
 
+
 # 重点天气预报:key_point
 # 未来第一天具体预报:day1_detailed
 # 未来第一天图片:day1_img_src
@@ -18,12 +19,13 @@ import scrapy
 class WeatherbriefingspiderItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    key_point = scrapy.Field()
-    day1_detailed = scrapy.Field()
+    key_point_title = scrapy.Field()
+    key_point_detail = scrapy.Field()
+    day1_detail = scrapy.Field()
     # day1_img_src = scrapy.Field()
-    day2_detailed = scrapy.Field()
+    day2_detail = scrapy.Field()
     # day2_img_src = scrapy.Field()
-    day3_detailed = scrapy.Field()
+    day3_detail = scrapy.Field()
     # day3_img_src = scrapy.Field()
     img_urls = scrapy.Field()
     images = scrapy.Field()
