@@ -8,7 +8,7 @@ import re
 
 class BriefingSpider(scrapy.Spider):
     name = 'briefing'
-    allowed_domains = ['http://www.nmc.cn']
+    allowed_domains = ['www.nmc.cn']
     start_urls = ['http://www.nmc.cn/publish/weather-bulletin/index.htm']
 
     def start_requests(self):
@@ -52,7 +52,7 @@ class BriefingSpider(scrapy.Spider):
                 if len(key_point_detail)!=0:
                     key_point_detail.append(detail)
                     detail = ""
-                key_point_title.append(strs[index])
+                key_point_title.append(strs[index][2:])
             else:
                 detail += strs[index]
             index += 1
