@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//briefGenerator/dict.txt=UTF-8
+encoding//briefGenerator/trainsition.py=utf-8
+encoding//briefGenerator/word_cut.py=utf-8
+encoding//weatherBriefingSpider/weatherBriefingSpider/items.py=utf-8
+encoding//weatherBriefingSpider/weatherBriefingSpider/middlewares.py=utf-8
+encoding//weatherBriefingSpider/weatherBriefingSpider/pipelines.py=utf-8
+encoding//weatherBriefingSpider/weatherBriefingSpider/spiders/briefing.py=utf-8

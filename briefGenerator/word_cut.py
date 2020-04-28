@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import jieba
 import jieba.posseg as posseg
@@ -20,4 +21,3 @@ with open('../weatherBriefingSpider/brief.json','r',encoding='utf-8') as fObj:
                 # if(str(pair.flag) =='north'):
                 #     print(pair.word) //可用于自定义词典归纳地名，如华北地区、西北地区在dict.txt中词性都为north，可归纳为north(北方地区)
                     break
-
