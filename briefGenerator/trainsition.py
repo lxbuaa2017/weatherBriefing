@@ -12,12 +12,13 @@ from docx.shared import Pt
 from docx.shared import RGBColor
 from docx.shared import Inches
 from docx.oxml.ns import qn
-key = ['暴雨', '大雪', '沙尘暴']
+key = ['暴雨','大雨','暴雪', '大雪', '沙尘暴']
 num1=1
 num2=1
 num3=1
-keyrain = ['暴雨','中到大雨']
-keysnow = ['大雪','中雪']
+keyrain = ['暴雨','中到大雨','大雨','大到暴雨']
+keysnow = ['暴雪','中到大雪','大雪','大到暴雪','中雪']
+brief_flag = False
 def change(line,str):
     part1 = re.split(r"[；，。（]", line)
     for tmp in part1:
@@ -25,6 +26,8 @@ def change(line,str):
         word_list = jieba.lcut(tmp)
         for keyword in word_list:
             if keyword in key:
+                global brief_flag
+                brief_flag = True
                 flag = 1;
         if flag == 1:
             str += '，'
@@ -65,10 +68,15 @@ with open('../weatherBriefingSpider/brief.json', 'r', encoding='utf-8') as fObj:
     #完成发布部分内容
     line1 = raw['brief_detail']
     publish = change(line1, publish)
-    publish += "。未来两者三日"
+    publish += "。未来两至三日"
     line1 = raw['day1_detail']
     publish = change(line1, publish)
-    publish += "，可能对交通运输产生影响。"
+    publish = change(raw['day2_detail'], publish)
+    publish = change(raw['day3_detail'], publish)
+    if brief_flag:
+        publish += "，可能对交通运输产生影响。"
+    else:
+        publish += "，没有特别恶劣天气。"
     #print(publish)
 
     #重要天气预报
@@ -98,8 +106,11 @@ with open('../weatherBriefingSpider/brief.json', 'r', encoding='utf-8') as fObj:
     #print(rain)
     #print(snow)
     #print(wind)
-
-path='brief.docx'
+now = datetime.datetime.now()
+date = str(now.year) + '年' + str(now.month) + '月' + str(now.day) + '日'
+p=os.path.dirname(__file__)
+p = os.path.join(p,os.path.pardir)
+path = '{}/'.format(p)+date+'气象.docx'
 if os.path.exists(path):  # 如果文件存在
     os.remove(path)  
 fd = open(path, mode="w", encoding="utf-8")
@@ -210,11 +221,9 @@ run=p13.add_run(wind)
 run.font.name = u'宋体'
 run._element.rPr.rFonts.set(qn('w:eastAsia'), u'宋体')
 run.font.color.rgb = RGBColor(0,0,0)
-now = datetime.datetime.now()
-date = str(now.year) + '年' + str(now.month) + '月' + str(now.day) + '日'
-p=os.path.dirname(__file__)
-p = os.path.join(p,os.path.pardir)
-document.save('{}/'.format(p)+date+'气象.docx')
+
+
+document.save(path)
 
 
 
