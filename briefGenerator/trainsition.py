@@ -62,7 +62,7 @@ def change2(day,snow,rain,wind):
 
 
 publish ="    "+time.strftime('%d', time.localtime(time.time())) + "日"
-with open('../weatherBriefingSpider/brief.json', 'r', encoding='utf-8') as fObj:
+with open('../weatherBriefingSpider/weatherBriefingSpider/brief.json', 'r', encoding='utf-8') as fObj:
     raw_list = json.load(fObj)
     raw = raw_list[0]
     #完成发布部分内容
@@ -159,9 +159,9 @@ s1 = document.add_paragraph()
 run = s1.add_run("")
 now = datetime.datetime.now()
 date = str(now.year) + '年' + str(now.month) + '月' + str(now.day) + '日'
-run.add_picture('../weatherBriefingSpider/weatherBriefingSpider/img/'+date+'-今日全国降水量预报图.jpg', width=Inches(1.85))
-run.add_picture('../weatherBriefingSpider/weatherBriefingSpider/img/'+date+'-明日全国降水量预报图.jpg', width=Inches(1.85))
-run.add_picture('../weatherBriefingSpider/weatherBriefingSpider/img/'+date+'-后天全国降水量预报图.jpg', width=Inches(1.85))
+run.add_picture('../weatherBriefingSpider/weatherBriefingSpider/img/'+date+'-今日全国降水量预报图.png', width=Inches(1.85))
+run.add_picture('../weatherBriefingSpider/weatherBriefingSpider/img/'+date+'-明日全国降水量预报图.png', width=Inches(1.85))
+run.add_picture('../weatherBriefingSpider/weatherBriefingSpider/img/'+date+'-后天全国降水量预报图.png', width=Inches(1.85))
 # 三、未来三日具体预报
 p7 = document.add_paragraph()
 run=p7.add_run("    "+"三、未来三日具体预报")

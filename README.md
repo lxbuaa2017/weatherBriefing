@@ -6,21 +6,14 @@
 
 ## Linux系统下直接进入项目根目录，运行run.sh脚本即可
 
-**Windows系统下具体操作为：**
-进入到weatherBriefingSpider/weatherBriefingSpider目录，如果之前跑过爬虫目录下会有brief.json文件，有的话就先删掉
-命令行执行 scrapy crawl briefing -o brief.json -s FEED_EXPORT_ENCODING=UTF-8 
-将在该文件夹下生成brief.json
-
-
-然后进入briefGenerator文件夹，运行python trainsition.py 
-将会在项目根目录下生成"xxxx年x月xx日气象.docx" 文档
+## Windows系统下进入weatherBriefingSpider目录，运行python start.py即可
 
 ### 生成物
 
 **简报文件**
 项目根目录下的docx文件，其命名为“xxxx年xx月xx日气象”
 
-**数据（即weatherBriefingSpider/brief.json文件）**
+**数据（即weatherBriefingSpider/weatherBriefingSpider/brief.json文件）**
 [{
 	"brief_title": "吉林云南等地出现小雨 内蒙古辽宁等地升温明显",
 	"brief_detail": "今天白天，全国大部地区降水较弱，吉林东部、云南西部等地的部分地区出现小雨；另外，内蒙古中部、辽宁辽东半岛等地的部分地区出现8～9级阵风。今14时较昨14时，内蒙中部和东南部、黑龙江东部、辽宁、河北中北部、山西、山东半岛、河南西部、江苏、安徽等地的部分地区出现4～6℃升温，内蒙古中部、辽宁西部以及江苏中部、安徽东部等局地升温8～10℃。",

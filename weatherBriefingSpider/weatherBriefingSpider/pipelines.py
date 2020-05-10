@@ -23,13 +23,13 @@ class WeatherImgPipeline(ImagesPipeline):
     def file_path(self, request, response=None, info=None):
         now = datetime.datetime.now()
         date = str(now.year) + '年' + str(now.month) + '月'+str(now.day) + '日'
-        img_name ='未定义.jpg'
+        img_name ='未定义.png'
         if request.meta['seq']==0:
-            img_name = date+'-今日全国降水量预报图.jpg'
+            img_name = date+'-今日全国降水量预报图.png'
         if request.meta['seq']==1:
-            img_name = date+'-明日全国降水量预报图.jpg'
+            img_name = date+'-明日全国降水量预报图.png'
         if request.meta['seq']==2:
-            img_name = date+'-后天全国降水量预报图.jpg'
+            img_name = date+'-后天全国降水量预报图.png'
         return img_name
 
     # 返回item对象，给下一执行的管道类
