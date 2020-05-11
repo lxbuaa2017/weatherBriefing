@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from pymongo import MongoClient
-import datetime
+import time
 import json
 import os
 import sys
@@ -14,8 +14,7 @@ jsonFile = open("../weatherBriefingSpider/weatherBriefingSpider/brief.json",mode
 jsonLoad = json.load(jsonFile)
 
 client = MongoClient('192.144.229.202',27017)
-now = datetime.datetime.now()
-cur=date = str(now.year) + '年' + str(now.month) + '月'+str(now.day) + '日'
+cur=date= time.strftime('%Y{y}%m{m}%d{d}',time.localtime(time.time())).format(y='年',m='月',d='日')
 
 onepicUrl = "../weatherBriefingSpider/weatherBriefingSpider/img/"+cur+"-今日全国降水量预报图.png"
 twopicUrl = "../weatherBriefingSpider/weatherBriefingSpider/img/"+cur+"-明日全国降水量预报图.png"
@@ -41,7 +40,7 @@ aim["image"]["onepic"]= onePic
 aim["image"]["twopic"] = twoPic
 aim["image"]["threepic"]= threePic
 
-col.delete_many({})
+#col.delete_many({})
 
 col.insert_one(aim)
 

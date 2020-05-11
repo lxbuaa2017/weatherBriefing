@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import datetime
+import time
 import json
 import jieba
 import re
@@ -106,8 +106,7 @@ with open('../weatherBriefingSpider/weatherBriefingSpider/brief.json', 'r', enco
     #print(rain)
     #print(snow)
     #print(wind)
-now = datetime.datetime.now()
-date = str(now.year) + '年' + str(now.month) + '月' + str(now.day) + '日'
+date = time.strftime('%Y{y}%m{m}%d{d}',time.localtime(time.time())).format(y='年',m='月',d='日')
 p=os.path.dirname(__file__)
 p = os.path.join(p,os.path.pardir)
 path = '{}/'.format(p)+date+'气象.docx'
@@ -157,8 +156,7 @@ run.font.color.rgb = RGBColor(0,0,0)
 # 图片
 s1 = document.add_paragraph()
 run = s1.add_run("")
-now = datetime.datetime.now()
-date = str(now.year) + '年' + str(now.month) + '月' + str(now.day) + '日'
+date = time.strftime('%Y{y}%m{m}%d{d}',time.localtime(time.time())).format(y='年',m='月',d='日')
 run.add_picture('../weatherBriefingSpider/weatherBriefingSpider/img/'+date+'-今日全国降水量预报图.png', width=Inches(1.85))
 run.add_picture('../weatherBriefingSpider/weatherBriefingSpider/img/'+date+'-明日全国降水量预报图.png', width=Inches(1.85))
 run.add_picture('../weatherBriefingSpider/weatherBriefingSpider/img/'+date+'-后天全国降水量预报图.png', width=Inches(1.85))

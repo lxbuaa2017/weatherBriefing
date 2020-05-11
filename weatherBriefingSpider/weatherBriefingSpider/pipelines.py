@@ -4,7 +4,7 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-import datetime
+import time
 
 from scrapy.pipelines.images import ImagesPipeline
 import scrapy
@@ -21,8 +21,7 @@ class WeatherImgPipeline(ImagesPipeline):
 
     # 指定文件存储路径
     def file_path(self, request, response=None, info=None):
-        now = datetime.datetime.now()
-        date = str(now.year) + '年' + str(now.month) + '月'+str(now.day) + '日'
+        date = time.strftime('%Y{y}%m{m}%d{d}',time.localtime(time.time())).format(y='年',m='月',d='日')
         img_name ='未定义.png'
         if request.meta['seq']==0:
             img_name = date+'-今日全国降水量预报图.png'
